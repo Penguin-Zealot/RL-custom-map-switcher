@@ -2,7 +2,7 @@ import tkinter as tk
 import os
 import shutil
 
-common_paths = ["C:\\Program Files (x86)\\Steam\\steamapps","D:\\SteamLibrary\\steamapps"]
+common_paths = ["C:\\Program Files (x86)\\Steam\\steamapps","D:\\SteamLibrary\\steamapps","D:\\Program Files (x86)\\Steam\\steamapps"]
 
 maps_folder = "\\workshop\\content\\252950"
 mods_folder = "\\common\\rocketleague\\TAGame\\CookedPCConsole\\mods"
