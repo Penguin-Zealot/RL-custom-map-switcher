@@ -1,6 +1,7 @@
 import tkinter as tk
 import os
 import shutil
+import sys
 
 common_paths = ["C:\\Program Files (x86)\\Steam\\steamapps","D:\\SteamLibrary\\steamapps","D:\\Program Files (x86)\\Steam\\steamapps"]
 
@@ -16,7 +17,7 @@ for path in common_paths:
         break
 
 # TODO: if folder not found use manual input (exit otherwise)
-if rl_path == "": exit
+if rl_path == "": sys.exit(1)
 
 # create mods folder if it doesnt exist
 if not os.path.exists(rl_path + mods_folder):
