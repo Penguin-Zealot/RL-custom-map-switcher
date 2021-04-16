@@ -2,8 +2,9 @@ import tkinter as tk
 import os
 import shutil
 import sys
+import json
 
-common_paths = ["C:\\Program Files (x86)\\Steam\\steamapps","D:\\SteamLibrary\\steamapps","D:\\Program Files (x86)\\Steam\\steamapps"]
+common_paths = ["C:\\Program Files (x86)\\Steam\\steamapps","D:\\SteamLibrary\\steamapps","G:\\Program Files (x86)\\steamapps"]
 
 maps_folder = "\\workshop\\content\\252950"
 mods_folder = "\\common\\rocketleague\\TAGame\\CookedPCConsole\\mods"
@@ -16,8 +17,15 @@ for path in common_paths:
         rl_path = path
         break
 
+rl_path = ""
+
+print(os.path.expanduser("~\\RLMapSwitcher.json"))
+
+with open(os.path.expanduser("~\\RLMapSwitcher.json"), "w+") as f:
+    pass
+
 # TODO: if folder not found use manual input (exit otherwise)
-if rl_path == "": sys.exit(1)
+#if rl_path == "": sys.exit(1)
 
 # create mods folder if it doesnt exist
 if not os.path.exists(rl_path + mods_folder):
@@ -37,13 +45,15 @@ for root, dirs, files in os.walk(rl_path + maps_folder):
         maps[fn.split('.')[0]] = os.path.join(root, fn)
 
 # TODO: get current map
-curr_map = list(maps)[0]
+# curr_map = list(maps)[0]
 
 # copy selected map to mods folder and renames
 def change_map():
     try:
         shutil.copyfile(maps[selected_map.get()], labs_path)
     except OSError as error:
+        print(error)
+    except KeyError as error:
         print(error)
 
 # remove custom map
@@ -61,9 +71,9 @@ window = tk.Tk()
 window.title("RL Map Switcher")
 
 selected_map = tk.StringVar(window)
-selected_map.set(curr_map)
+selected_map.set("choose a map")
 
-drop_down = tk.OptionMenu(window, selected_map, *maps.keys())
+drop_down = tk.OptionMenu(window, selected_map, "none",*maps.keys())
 drop_down.config(width=18, font=("Helvetica", "18"))
 drop_down.pack(expand=True, fill=tk.Y)
 
