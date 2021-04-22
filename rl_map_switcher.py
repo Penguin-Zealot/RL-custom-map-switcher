@@ -81,7 +81,8 @@ class RLMapSwitcher(tk.Tk):
 
     # copy selected map to mods folder and renames
     def change_map(self, *args):
-        if (self.selected_map.get() == "choose a map" or "none"): return
+        if (self.selected_map.get() == "choose a map" or self.selected_map.get() == "none"):
+            return
         try:
             shutil.copyfile(self.maps[self.selected_map.get()], self.labs_file)
         except OSError as error:
